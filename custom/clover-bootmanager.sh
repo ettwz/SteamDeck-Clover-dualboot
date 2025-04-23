@@ -2,7 +2,7 @@
 
 # define variables here
 CLOVER=$(efibootmgr | grep -i Clover | colrm 9 | colrm 1 4)
-CLOVER_VERSION=5160
+CLOVER_VERSION=5161
 CLOVER_EFI=\\EFI\\clover\\cloverx64.efi
 BIOS_VERSION=$(cat /sys/class/dmi/id/bios_version)
 MODEL=$(cat /sys/class/dmi/id/board_name)
@@ -42,7 +42,12 @@ else
 	fi
 fi
 
-echo Clover $CLOVER_VERSION Boot Manager - $(date) >> $CloverStatus
+DETECTED_VERSION=$(strings $EFI_PATH/clover/cloverx64.efi | grep -i "clover revision:" | awk '{print $3}')
+if [ ! -z "$DETECTED_VERSION" ]; then
+  echo Detected Clover $DETECTED_VERSION Boot Manager - $(date) >> $CloverStatus
+else
+  echo Clover $CLOVER_VERSION Boot Manager - $(date) >> $CloverStatus
+fi
 echo Steam Deck Model : $MODEL with  BIOS version $BIOS_VERSION >> $CloverStatus
 
 echo Kernel Version : $KERNEL_VERSION >> $CloverStatus

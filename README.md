@@ -205,7 +205,7 @@ Once done, boot to SteamOS to install Clover!
    
      ![image](https://github.com/user-attachments/assets/043d8e7c-9d57-48b2-a1ad-f93c94cf3e9f)
 
-4. The script will check if sudo passwword is already set. <br>
+4. The script will check if sudo password is already set. <br>
     - If it is already set, enter the current sudo password and the script will continue.
     - If wrong password is provided the script will exit immdediately. Re-run the script and enter the correct sudo password!
     - If the sudo password is blank / not yet set by the end user, the script will prompt to setup the sudo password. Re-run the script to continue.
